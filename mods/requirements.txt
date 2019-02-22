@@ -1,0 +1,6 @@
+xlrd
+tqdm
+mysql-connector
+pandas
+scipy
+
