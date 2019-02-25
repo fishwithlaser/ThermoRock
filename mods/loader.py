@@ -65,7 +65,7 @@ def load(folder="XLSX", destination_folder = "csv"):
 
     return notKnown, minerals, thermody 
 
-def minerals(mins, minerals):
+def minerals(mins, minerals, thermody):
     ########### Creates definition that uploads relevant minerals
     d={} # set up empty dictionary
     minNum = len(mins)
@@ -81,13 +81,30 @@ def minerals(mins, minerals):
             "minrl"      : str(minerals.loc[mins[i],"min_sym"]),
             "min_name"   : str(minerals.loc[mins[i],"mineral_name"]),
             "sys"        : "",
+            "sg"         : [],
             "endmember"  : [mins[i]],
             "endnum"     : 2,
             "variables"  : [],
             "vari_lower" : [],
             "vari_upper" : [],
             "p"          : "@(X)X(1)",
-            "SiO2toCO2"  : minerals.loc[mins[i],"SiO2":"CO2"]
+            "SiO2toCO2"  : minerals.loc[mins[i],"SiO2":"CO2"],
+            "H"          : thermody.loc[mins[i],"1"],
+            "S"          : thermody.loc[mins[i],"2"], 
+            "V"          : thermody.loc[mins[i],"3"], 
+            "a"          : thermody.loc[mins[i],"4"], 
+            "b"          : thermody.loc[mins[i],"5"], 
+            "c"          : thermody.loc[mins[i],"6"], 
+            "d"          : thermody.loc[mins[i],"7"], 
+            "alpha0"     : thermody.loc[mins[i],"8"], 
+            "alpha1"     : thermody.loc[mins[i],"9"], 
+            "K"          : thermody.loc[mins[i],"10"], 
+            "dKdp"       : thermody.loc[mins[i],"11"], 
+            "dKdT"       : thermody.loc[mins[i],"12"], 
+            "Tc"         : thermody.loc[mins[i],"13"], 
+            "Smax"       : thermody.loc[mins[i],"14"], 
+            "Vmax"       : thermody.loc[mins[i],"15"], 
+            "Comp"       : []
             }
     # Add water
         d["Mineral_{0}".format((minNum))] = {
@@ -95,28 +112,60 @@ def minerals(mins, minerals):
         "name"       : "water",
         "min_name"   : "Water",
         "sys"        : "CHO",
+        "sg"         : [],
         "endmember"  : [151],
         "endnum"     : 2,
         "variables"  : {'x(liq)'},
         "vari_lower" : [0],
         "vari_upper" : [1],
         "p"          : "@(X)X(1)",
-        "SiO2toCO2"  : minerals.loc[150,"SiO2":"CO2"]
-    }
-    # Add CO2
+        "SiO2toCO2"  : minerals.loc[150,"SiO2":"CO2"],
+        "H"          : thermody.loc[150,"1"],
+        "S"          : thermody.loc[150,"2"], 
+        "V"          : thermody.loc[150,"3"], 
+        "a"          : thermody.loc[150,"4"], 
+        "b"          : thermody.loc[150,"5"], 
+        "c"          : thermody.loc[150,"6"], 
+        "d"          : thermody.loc[150,"7"], 
+        "alpha0"     : thermody.loc[150,"8"], 
+        "alpha1"     : thermody.loc[150,"9"], 
+        "K"          : thermody.loc[150,"10"], 
+        "dKdp"       : thermody.loc[150,"11"], 
+        "dKdT"       : thermody.loc[150,"12"], 
+        "Tc"         : thermody.loc[150,"13"], 
+        "Smax"       : thermody.loc[150,"14"], 
+        "Vmax"       : thermody.loc[150,"15"], 
+        "Comp"       : []    }
+# Add CO2
     d["Mineral_{0}".format((minNum+1))] = {
         "minrl"      : "liq",
         "min_name"   : "carbonDioxide",
         "name"       : "CO2",
         "sys"        : "CHO",
+        "sg"         : [],
         "endmember"  : [152],
         "endnum"     : 2,
         "variables"  : {'x(liq)'},
         "vari_lower" : [0],
         "vari_upper" : [1],
         "p"          : "@(X)X(1)",
-        "SiO2toCO2"  : minerals.loc[151,"SiO2":"CO2"]
-    }
+        "SiO2toCO2"  : minerals.loc[151,"SiO2":"CO2"],
+        "H"          : thermody.loc[151,"1"],
+        "S"          : thermody.loc[151,"2"], 
+        "V"          : thermody.loc[151,"3"], 
+        "a"          : thermody.loc[151,"4"], 
+        "b"          : thermody.loc[151,"5"], 
+        "c"          : thermody.loc[151,"6"], 
+        "d"          : thermody.loc[151,"7"], 
+        "alpha0"     : thermody.loc[151,"8"], 
+        "alpha1"     : thermody.loc[151,"9"], 
+        "K"          : thermody.loc[151,"10"], 
+        "dKdp"       : thermody.loc[151,"11"], 
+        "dKdT"       : thermody.loc[151,"12"], 
+        "Tc"         : thermody.loc[151,"13"], 
+        "Smax"       : thermody.loc[151,"14"], 
+        "Vmax"       : thermody.loc[151,"15"], 
+        "Comp"       : []    }
     return d
 
 def iter4(minlen):
