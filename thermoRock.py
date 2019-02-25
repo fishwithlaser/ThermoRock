@@ -1,8 +1,7 @@
 import metaPetro as mP
-import numpy as np
 
 mins = [57, 138, 143, 105]
 
-react = mP.Rx(mins)
-
+react, A0 = mP.Rx(mins)
+print(A0)
 print(react)
