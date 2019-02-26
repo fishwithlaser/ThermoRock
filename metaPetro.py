@@ -38,7 +38,7 @@ def Rx(mins,CC=CC):
     """
     # Loads datadrame
     notKnown, minerals, thermody = loader.load() 
-    d = loader.minerals(mins, minerals)
+    d = loader.minerals(mins, minerals, thermody)
     minNum        = len(mins)
     PHASE         = d
     endnum        = np.zeros(minNum+2)
@@ -48,7 +48,7 @@ def Rx(mins,CC=CC):
         endnum[i] = len(temp.get('endmember'))
  
     minNum = len(mins)
-    d = loader.minerals(mins, minerals)
+    d = loader.minerals(mins, minerals, thermody)
     PHASE         = d
     endnum        = np.zeros(minNum+2)
     for i in range(0, minNum+2):
