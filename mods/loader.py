@@ -1,3 +1,20 @@
+"""                                                                             
+Code to support thermodynamics-mineral interactions                             
+Adapted from code written by: Dr. Xu Chu                                        
+Written by: Thomas Kosciuch                                                     
+Winter 2019, University of Toronto                                              
+                                                                                
+   thomas@kosciuch.ca                                                           
+or thomas.kosciuch@mail.utoronto.ca                                             
+or xu.chu@utoronto.ca                                                           
+                                                                                
+_______________________________ L O A D E R ___________________________________
+                                                                                
+This package is responsible for                                                 
+   loading data structures (hashmaps mostly) for other functions to use 
+"""
+
+
 from os import listdir
 import csv
 # required to load database file
@@ -170,10 +187,9 @@ def minerals(mins, minerals, thermody):
 
 
 #### LOADS VALUES WITHIN ACTIVITY FUNCTION
+# 
+#
 def actMod(mins):
-"""
-Loads activity function for gibbs free energy calculations. Also, i feel there must be a better way of doing this
-"""
     d = minerals(mins, minerals, thermody)                                      
     #def calcG(P,T,A, flag):                    i
 	pd.DataFrame(d, index = ['H'])                                                     
