@@ -168,6 +168,38 @@ def minerals(mins, minerals, thermody):
         "Comp"       : []    }
     return d
 
+
+#### LOADS VALUES WITHIN ACTIVITY FUNCTION
+def actMod(mins):
+"""
+Loads activity function for gibbs free energy calculations. Also, i feel there must be a better way of doing this
+"""
+    d = minerals(mins, minerals, thermody)                                      
+    #def calcG(P,T,A, flag):                    i
+	pd.DataFrame(d, index = ['H'])                                                     
+	T_G = [300, 800]                                                                   
+	T = T_G[0]/2 + T_G[1]/2                                                            
+	minrl = pd.DataFrame(d, index = ['minrl']).values                                  
+	H0=pd.DataFrame(d, index = ['H']).values                                           
+	S0=pd.DataFrame(d, index = ['S']).values                                           
+	V0=pd.DataFrame(d, index = ['V']).values             # H in KJ, S in KJ/K, V in J/bar
+	a0=pd.DataFrame(d, index = ['a']).values                                           
+	b0=pd.DataFrame(d, index = ['b']).values                                           
+	c0=pd.DataFrame(d, index = ['c']).values                                           
+	d0=pd.DataFrame(d, index = ['s']).values                                           
+	alpha00=pd.DataFrame(d, index = ['alpha0']).values                                 
+	alpha10=pd.DataFrame(d, index = ['alpha1']).values                                 
+	Tc00=pd.DataFrame(d, index = ['Tc0']).values                                       
+	Smax0=pd.DataFrame(d, index = ['Smax']).values                                     
+	Vmax0=pd.DataFrame(d, index = ['Vmax']).values                                     
+	K0=pd.DataFrame(d, index = ['K']).values                                           
+	dKdT0=pd.DataFrame(d, index = ['dKdT']).values                                     
+	dKdp0=pd.DataFrame(d, index = ['dKdp']).values   
+    return minrl, H0, S0, V0, a0, b0, c0, d0, alpha00, alpha10, Tc00, Smax0, Vmax0, K0, dKdT0, dKdp0
+
+
+
+
 def iter4(minlen):
     """ Package will calculate all combonations within a 4-series of len-numbers
     This creates duplicate entries of un-ordered list b/c checks take more time
@@ -195,7 +227,6 @@ def iter4(minlen):
         outF.write("\n")
         outF.close()
     return combo
-
 
 
 
