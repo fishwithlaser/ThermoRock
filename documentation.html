@@ -10,35 +10,59 @@
 </div>
 <div class = 'container'>
     <p> python script for calculating possible thermodynamics reactions of minerals.
+    <br>
+    This script was largely developed based on the doctoral research developed <br> 
+    by Dr. Xu Chu (xu.chu@utoronto.ca) and adapted to be able to scale to large <br>
+    quantities of possible reactions.
     </p>
-    <h2>Structure</h2>
+    <h3>Structure</h3>
     <p> There are a few features of the code with a few packages. Briefly they are:</p>
+    <h3> main folder </h3>
+    <h4> requirments.py </h4>
+    <p> documents required packages. Can be run from bash </p> 
+    <h4 class ='red-text'> thermorock.py</h4>
+    <p> run this to complete the script regularly</p>
     <h3> mods/</h3>
-    <h4> mkruns.py</h4>
-    <p> This package produces a list of opperations to be used by python - 
-    to find possible reaction. Functions include: <b> </b>
-    <h4> matrixOps.py</h4>
-    <p> This package is responsible for basic matrix opperations. Functions
-    include: <br> <b> compress</b> (compresses matrix) 
-    <h4> findRxn.py </h4>
-    <p> Package uses list of operations (queue) to output a list of successful reactions.
-    This will not be ready for a whie.</p>
-    <h4> loader.py </h4>
-    <p> Package loads datafram and concerts XLSX. Function also loads dataframes as 
-    hashmaps. Functions include: <br> <b> change </b> (converts), <br> 
-    <b> load </b> (loads csv), <br>
-    <b> minerals </b> (creates minerals-populated pandas-dataframe), <br>
-    <b>actmod</b> (loads required data into G-calcs), <br> 
-    <b>Iter4</b> (creates list of opperations </b><p>
-    <h4> metamathicCalc.py </h4>
-    <p> main script -  performs required math to solve </p>
+        <div class = 'container'>
+            <h4> mkruns.py</h4>
+            <p> This package produces a list of opperations to be used by python - 
+            to find possible reaction. Functions include: <b> </b>
+            <h4> matrixOps.py</h4>
+            <p> This package is responsible for basic matrix opperations. Functions
+            include: <br> <b> compress</b> (compresses matrix) 
+            <h4> findRxn.py </h4>
+            <p> Package uses list of operations (queue) to output a list of successful reactions.
+            This will not be ready for a whie.</p>
+            <h4> loader.py </h4>
+            <p> Package loads datafram and concerts XLSX. Function also loads dataframes as 
+            hashmaps. Functions include: <br> <b> change </b> (converts), <br> 
+            <b> load </b> (loads csv), <br>
+            <b> minerals </b> (creates minerals-populated pandas-dataframe), <br>
+            <b>actmod</b> (loads required data into G-calcs), <br> 
+            <b>Iter4</b> (creates list of opperations </b><p>
+            <h4> metamathicCalc.py </h4>
+            <p> main script -  performs required math to solve </p>
+        </div>
+    <h3> CSV/ </h3>
+        <div calss = 'container'>
+        <p> here resides the CSV version of XLSX exported by sheet.
+        <h4> comp.csv </h4>
+        <p> file contains calcualtion information for activity and gibb's free</br>
+        energy calculations. comp.csv is the default name.</p>
+        <h4> parameters.csv </h4>
+        <p> The contains mineral stuctures of various minerals.</p>
+        <h4> Sheet1.csv </h4>
+        <p> This information is not used </p> 
+        </div>
+    <h3> XLSX/ </h3>
+        <div class = 'container'>
 
-
+        </div>
 </div>
 <footer>
 <div class='red white-text'>
-    <div class = 'container'>
-        <p>contact: thomas.kosciuch@mail.utoronto.ca, xu.chu@utoronto.ca</p>
+<div class = 'container'>
+    <p>contact: thomas.kosciuch@mail.utoronto.ca, xu.chu@utoronto.ca</p>
     </div>
 </div>
 </footer>
