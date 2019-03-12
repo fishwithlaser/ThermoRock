@@ -14,12 +14,16 @@ This package is responsible for
     calculating gibbs free energy and activity models
 """
 
-def CalcG_f(P, T):   #says P is required but not used
+def CalcG_f(P, T):          #says P is required but not use
+    """
+    This calculates the activity cofficient of fluids.
+    """
     R = 8.314472e-3
-    T = T+273
+    T = T+273               #converts to kelvin
     a = 0
-
-    if 1 == 1:
+    Vinit = 'err - CalcG_f'
+    Psat = 'err - CalcG_f'
+    if 1 == 1:              #currently does not support non H2O or CO2 sys
         a0= 1113.4
         a1=-0.88517
         a2= 4.53e-3
@@ -46,31 +50,32 @@ def CalcG_f(P, T):   #says P is required but not used
         else:
             a     = a0 + a4 * (T-Tc) + a5 * (T-Tc) ** 2 + a6 * (T-Tc)**3
             
-    else:
-        a0=741.2
-        a1=-0.10891
-        a2=-3.903e-4
-        Tc=304.2
-        P0=5
-        a = a0 + a1 * T + a2 * T ** 2
-        b = 3.057
-        c = 5.40776e-3 - 1.59046e-6 *T
-        d =-1.78198e-1 + 2.45317e-5 *T
-        e = 0
-        if T <= Tc:
-            Vinit = R * T / P + b
-            lngamma_MRK, V_MRK  =  Calclngamma(a,b,P,T,Vinit)
-        else:
-            Vinit  = R * T / P + 10 * b 
-            lngamma1,V_MRK      = Calclngamma(a_gas,b,Psat,T,Vinit)
-    
-            Vinit  = b / 2
-            lngamma2,V_MRK = Calclngamma(a,b,Psat,T,Vinit)
+        else:               # this will never be activated
+            a0=741.2
+            a1=-0.10891
+            a2=-3.903e-4
+            Tc=304.2
+            P0=5
+            a = a0 + a1 * T + a2 * T ** 2
+            b = 3.057
+            c = 5.40776e-3 - 1.59046e-6 *T
+            d =-1.78198e-1 + 2.45317e-5 *T
+            e = 0
 
-            Vinit  = R * T / P + b
-            lngamma3,V_MRK = Calclngamma(a,b,P,T,Vinit)
+            if T <= Tc:
+                Vinit = R * T / P + b
+                lngamma_MRK, V_MRK  =  Calclngamma(a,b,P,T,Vinit)
+            else:
+                Vinit  = R * T / P + 10 * b 
+                lngamma1,V_MRK      = Calclngamma(a_gas,b,Psat,T,Vinit)
         
-            lngamma_MRK = lngamma1-lngamma2+lngamma3
+                Vinit  = b / 2
+                lngamma2,V_MRK = Calclngamma(a,b,Psat,T,Vinit)
+
+                Vinit  = R * T / P + b
+                lngamma3,V_MRK = Calclngamma(a,b,P,T,Vinit)
+            
+                lngamma_MRK = lngamma1-lngamma2+lngamma3
     
     return Psat, a, b, P, T, Vinit
 
@@ -91,3 +96,21 @@ def Calclngamma(a,b,P,T,Vinit):
     A=a/b/R/T^1.5;
     lngamma=z-1-log(z-B)-A*log(1+B/z);
     return lngamma,V_MRK
+
+def CalcG(P, T, d):
+    """
+    Calculates Gibb's free energy in minerals.
+    A is the structure ofthe endmember
+    P is the pressure (Kbar)
+    T is the temperature
+    """
+    return P, T, d
+
+    
+
+
+
+def CalcA (d, P, Xsi):
+    """
+    Calculates activity co-efficients.
+    """
